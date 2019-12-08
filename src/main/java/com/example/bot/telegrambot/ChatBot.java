@@ -41,12 +41,18 @@ public class ChatBot implements TelegramMvcController {
     public BaseRequest getStart(Chat chat) {
         return new SendMessage(chat.id(), "Hi this is a test case for On Travel Solutions, " +
                 "to enter a message, use /command + message, " +
-                "for example \"/get City Information\"\"");
+                "for example \"/getCityInformation  message\"\"");
     }
 
-    @MessageRequest(value = "/message {first:\\w+}")
-    public BaseRequest message(Chat chat, @BotPathVariable("first") String message) {
-        return new SendMessage(chat.id(), message);
+    @BotRequest(value = "/help")
+    public BaseRequest help(Chat chat) {
+        return new SendMessage(chat.id(), "/getListCities -- list of cities " +
+                "/getCityInformation + cityName -- Get information about the city " +
+                "/addCity + cityName -- add a new city " +
+                "/addCityInformation + cityName + discription -- add a description to the city " +
+                "/deleteCity + cityName -- remove the city and its description " +
+                "/editCity + cityName + newCityName -- edit the name of the city " +
+                "/editCityInformation + cityName + newDiscription  -- edit the description of the city ");
     }
 
     @BotRequest(value = "/getListCities")
