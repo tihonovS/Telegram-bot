@@ -49,8 +49,9 @@ public class CityService {
     }
 
     public void deleteCity(String title) {
-        Long cityId = getCityFromTitle(title).getId();
-        cityRepository.deleteById(cityId);
+        City city = getCityFromTitle(title);
+        cityInformationService.deleteCityInformationByCity(city);
+        cityRepository.delete(city);
     }
 
     public City getCityFromTitle(String title) {

@@ -32,7 +32,7 @@ public class CityInformationService {
         return city;
     }
 
-    public void deleteCityInformationByCityId(City city) {
+    public void deleteCityInformationByCity(City city) {
         List<CityInformation> informationCities = findInformationCityByCityId(city);
 
         informationCities.forEach(cityInformation -> cityInformationRepository.delete(cityInformation));
