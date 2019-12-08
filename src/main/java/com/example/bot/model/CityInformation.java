@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class InformationCity extends BaseId {
+public class CityInformation extends BaseId {
 
     @Column
     private String description;
