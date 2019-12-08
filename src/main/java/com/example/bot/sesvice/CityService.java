@@ -32,7 +32,7 @@ public class CityService {
 
     public String getInformationCitiesByCityTitle(String title) {
         City cityIdFromTitle = getCityFromTitle(title);
-        List<CityInformation> cityInformationList = cityInformationService.findInformationCityByCityId(cityIdFromTitle);
+        List<CityInformation> cityInformationList = cityInformationService.findInformationCityByCity(cityIdFromTitle);
 
         List<String> stringList = cityInformationList.stream().map(CityInformation::getDescription).collect(Collectors.toList());
         return StringJoiningUtils.join(stringList);
@@ -45,7 +45,24 @@ public class CityService {
     }
 
     public City saveCityInformation(String city, String discription) {
-       return cityInformationService.addCityInformation(getCityFromTitle(city), discription);
+        return cityInformationService.addCityInformation(getCityFromTitle(city), discription);
+    }
+
+    public City editCity(String city, String newNameCity) {
+        City cityFromTitle = getCityFromTitle(city);
+        if (cityFromTitle != null) {
+            cityFromTitle.setTitle(newNameCity);
+            cityRepository.save(cityFromTitle);
+        }
+        return cityFromTitle;
+    }
+
+    public City editCityInformation(String city, String newDiscription) {
+        City cityFromTitle = getCityFromTitle(city);
+        if (cityFromTitle != null) {
+            cityInformationService.editCityInformation(cityFromTitle, newDiscription);
+        }
+        return cityFromTitle;
     }
 
     public void deleteCity(String title) {

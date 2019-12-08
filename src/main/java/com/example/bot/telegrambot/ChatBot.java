@@ -79,6 +79,24 @@ public class ChatBot implements TelegramMvcController {
         return new SendMessage(chat.id(), "Done");
     }
 
+    @MessageRequest(value = "/editCity {nameCity:[А-я]+} {newNameCity:[\\s\\S]+}")
+    public BaseRequest editCity(Chat chat,  @BotPathVariable("nameCity") String nameCity,  @BotPathVariable("newNameCity") String newNameCity){
+        City city = cityService.editCity(nameCity, newNameCity);
+        if (city != null)
+            return new SendMessage(chat.id(), "Done");
+        else
+            return new SendMessage(chat.id(), "Сity not found");
+    }
+
+    @MessageRequest(value = "/editCityInformation {nameCity:[А-я]+} {newDiscription:[\\s\\S]+}")
+    public BaseRequest editCityInformation(Chat chat,  @BotPathVariable("nameCity") String nameCity,  @BotPathVariable("newDiscription") String newDiscription){
+        City city = cityService.editCityInformation(nameCity, newDiscription);
+        if (city != null)
+            return new SendMessage(chat.id(), "Done");
+        else
+            return new SendMessage(chat.id(), "Сity not found");
+    }
+
     public String getToken() {
         return botToken;
     }

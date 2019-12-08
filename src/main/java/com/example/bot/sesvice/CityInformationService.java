@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,7 +19,7 @@ public class CityInformationService {
         this.cityInformationRepository = cityInformationRepository;
     }
 
-    public List<CityInformation> findInformationCityByCityId(City city) {
+    public List<CityInformation> findInformationCityByCity(City city) {
         return cityInformationRepository.findByCity(city);
     }
 
@@ -32,8 +33,15 @@ public class CityInformationService {
         return city;
     }
 
+    public void editCityInformation(City city, String discription) {
+        List<CityInformation> cityInformations = findInformationCityByCity(city);
+        CityInformation cityInformation = cityInformations.stream().reduce((first, second) -> second).get();
+        cityInformation.setDescription(discription);
+        cityInformationRepository.save(cityInformation);
+    }
+
     public void deleteCityInformationByCity(City city) {
-        List<CityInformation> informationCities = findInformationCityByCityId(city);
+        List<CityInformation> informationCities = findInformationCityByCity(city);
 
         informationCities.forEach(cityInformation -> cityInformationRepository.delete(cityInformation));
     }
