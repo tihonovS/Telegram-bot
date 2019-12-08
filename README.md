@@ -7,4 +7,5 @@ When you run the application, test data from data is entered into the database.s
 To see all commands type " /help"
 
 telegram.bot.name = onTravelSolutionsBot
+
 telegram.bot.token = 909985071:AAFvp-9Jz4DgTAcdm8nM5WyiH92QaUey5mM
