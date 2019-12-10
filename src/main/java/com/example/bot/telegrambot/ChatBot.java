@@ -39,20 +39,20 @@ public class ChatBot implements TelegramMvcController {
 
     @BotRequest(value = "/start")
     public BaseRequest getStart(Chat chat) {
-        return new SendMessage(chat.id(), "Hi this is a test case for On Travel Solutions, " +
-                "to enter a message, use /command + message, " +
-                "for example \"/getCityInformation  message\"\"");
+        return new SendMessage(chat.id(), "Hi this is a test case for On Travel Solutions. \n " +
+                "to enter a message, use /command + message \n " +
+                "for example \"/getCityInformation  message\"\" \n");
     }
 
     @BotRequest(value = "/help")
     public BaseRequest help(Chat chat) {
-        return new SendMessage(chat.id(), "/getListCities -- list of cities " +
-                "/getCityInformation + cityName -- Get information about the city " +
-                "/addCity + cityName -- add a new city " +
-                "/addCityInformation + cityName + discription -- add a description to the city " +
-                "/deleteCity + cityName -- remove the city and its description " +
-                "/editCity + cityName + newCityName -- edit the name of the city " +
-                "/editCityInformation + cityName + newDiscription  -- edit the description of the city ");
+        return new SendMessage(chat.id(), "/getListCities -- list of cities \n" +
+                "/getCityInformation + cityName -- Get information about the city \n" +
+                "/addCity + cityName -- add a new city \n" +
+                "/addCityInformation + cityName + discription -- add a description to the city \n" +
+                "/deleteCity + cityName -- remove the city and its description \n" +
+                "/editCity + cityName + newCityName -- edit the name of the city \n" +
+                "/editCityInformation + cityName + newDiscription  -- edit the description of the city \n");
     }
 
     @BotRequest(value = "/getListCities")

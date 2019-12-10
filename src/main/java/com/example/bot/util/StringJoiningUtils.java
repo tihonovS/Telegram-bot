@@ -6,6 +6,6 @@ import java.util.stream.Collectors;
 
 public class StringJoiningUtils {
     public static String join(List<String> stringList){
-       return stringList.stream().map(Objects::toString).collect(Collectors.joining(", "));
+       return stringList.stream().map(Objects::toString).collect(Collectors.joining("\n"));
     }
 }
